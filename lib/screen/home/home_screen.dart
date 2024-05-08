@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:festival_post_app/utils/global.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,110 +14,179 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+
   Widget build(BuildContext context) {
-    return  Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Festival Post Maker",
-            style: TextStyle(fontWeight: FontWeight.w600),
+    return  PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        exitDialog();
+      },
+      child: Scaffold(
+          appBar: AppBar(
+            title: const Text(
+              "Festival Post Maker",
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(Icons.search),
+              )
+            ],
+            backgroundColor: Colors.amber.shade200,
+            elevation: 5,
           ),
-          backgroundColor: Colors.amber.shade200,
-          elevation: 5,
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Container(
-            //   height: 80,
-            //   width: MediaQuery.sizeOf(context).width,
-            //   alignment: Alignment.bottomCenter,
-            //   decoration: BoxDecoration(
-            //     color: Colors.white,
-            //     boxShadow: [BoxShadow(
-            //       blurRadius: 5,spreadRadius: -2
-            //     )],
-            //   ),
-            //   child: Padding(
-            //     padding: const EdgeInsets.all(8.0),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         Text("Festival Post Maker",style: TextStyle(fontSize: 25),),
-            //         Icon(Icons.help,color: Colors.amber.shade400,)
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: const Image(
-                    image: AssetImage("assets/Images/img1.jpg"),
-                  )),
-            ),
-            // Container(
-            //   decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/Images/img1.jpg"))),
-            // )
-            // ListView.builder(itemBuilder: )
-            //
-            Padding(
-              padding: const EdgeInsets.only(top: 5, left: 15, right: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Upcoming festival",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.cyan.shade400),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CarouselSlider.builder(itemCount: carouselList.length, itemBuilder: (context, index, realIndex) {
+                 return
+                   Container(
+                    // height: 50,
+                    //  width: 600,
+                     margin: EdgeInsets.all(5),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                    child: Image.asset("${carouselList[index]}",fit: BoxFit.contain,)
+                  );
+                }, options: CarouselOptions(autoPlay: true)),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5, left: 15, right: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Upcoming festival",
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.cyan.shade400),
+                      ),
+                      Text(
+                        "View all",
+                        style: TextStyle(fontSize: 18, color: Colors.cyan.shade400),
+                      )
+                    ],
                   ),
-                  Text(
-                    "View all",
-                    style: TextStyle(fontSize: 18, color: Colors.cyan.shade400),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: SizedBox(
-                height: 140,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: category.length,
-                  itemBuilder: (context, index) {
-                     return
-                    Tile(index);
-                    //   Container(
-                    //   height: 150,
-                    //   width: 120,
-                    //   // color: Colors.red,
-                    //   margin: const EdgeInsets.all(5),
-                    //   decoration: BoxDecoration(
-                    //     borderRadius: BorderRadius.circular(15),
-                    //     color: Colors.red,
-                    //     image:  DecorationImage(
-                    //         image: AssetImage('${category[index].image}'),
-                    //         fit: BoxFit.cover),
-                    //   ),
-                    // );
-                  },
                 ),
-              ),
-            )
-          ],
-        ));
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: SizedBox(
+                    height: 140,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: category.length,
+                      itemBuilder: (context, index) {
+                         return
+                        Tile(index);
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15, right: 10), child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Other Festiavl",
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.cyan.shade400),
+                      ),
+                      Text(
+                        "View all",
+                        style: TextStyle(fontSize: 18, color: Colors.cyan.shade400),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: SizedBox(
+                    height: 140,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: festivalList.length,
+                      itemBuilder: (context, index) {
+                        return
+                          Container(
+                            height: 150,
+                            width: 120,
+                            // color: Colors.red,
+                            margin: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.red,
+                              image:  DecorationImage(
+                                  image: AssetImage("${festivalList[index]}"),
+                                  fit: BoxFit.cover),
+                            ),
+                          );
+
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15, right: 10), child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Festiavls",
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.cyan.shade400),
+                    ),
+                    Text(
+                      "View all",
+                      style: TextStyle(fontSize: 18, color: Colors.cyan.shade400),
+                    )
+                  ],
+                ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: SizedBox(
+                    height: 140,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: festival2List.length,
+                      itemBuilder: (context, index) {
+                        return
+                          Container(
+                            height: 150,
+                            width: 120,
+                            // color: Colors.red,
+                            margin: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.red,
+                              image:  DecorationImage(
+                                  image: AssetImage("${festival2List[index]}"),
+                                  fit: BoxFit.cover),
+                            ),
+                        );
+
+                      },
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )),
+    );
   }
    Widget Tile(int index)
   {
     return InkWell(
       onTap: () {
-        List mainList = [diwaliList,diwaliList,diwaliList,diwaliList];
+        List mainList = [gujaratList,buddhaList,diwaliList,duseraList,diwaliList];
         Navigator.pushNamed(context, 'choice',arguments: mainList[index]);
       },
-      child: Container(
+      child:
+      Container(
       height: 150,
       width: 120,
       // color: Colors.red,
@@ -127,5 +200,32 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
           ),
     );
+  }
+  void exitDialog()
+  {
+    showDialog(context: context, builder: (context) {
+     return AlertDialog(
+       title: Column(
+         children: [
+           Text("Are sure Exit"),
+           Row(
+             mainAxisAlignment: MainAxisAlignment.end,
+             children: [
+               ElevatedButton(onPressed: () {
+                 setState(() {
+                   exit(0);
+                 });
+               }, child: Text("Yes")),
+               ElevatedButton(onPressed: () {
+                 setState(() {
+                   Navigator.pop(context);
+                 });
+               }, child: Text("No"))
+             ],
+           )
+         ],
+       ),
+     );
+    },);
   }
 }

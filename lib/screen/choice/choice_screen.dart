@@ -1,9 +1,4 @@
-import 'package:festival_post_app/utils/global.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
-// import '../../model/festival_model.dart';
 
 class ChoiceScreen extends StatefulWidget {
   const ChoiceScreen({super.key});
@@ -48,7 +43,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
           ),
           Expanded(
             child: GridView.builder(
-              itemCount: diwaliList.length,
+              itemCount: m1.length,
               gridDelegate:
                   const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
               itemBuilder: (context, index) {
@@ -60,7 +55,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     });
                   },
                   child: Image.asset(
-                   diwaliList[index]
+                    m1[index]
                   ),
                 );
               },
