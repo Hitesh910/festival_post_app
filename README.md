@@ -3,7 +3,7 @@
 - Using this business poster maker with name and icon you can simply upload your brand logo design and business card details like business name, business email, business phone, or mobile number then Festival Post - Photo Maker app will automatically add to the festival photo or poster and that’s it.
 
   # features
-   -Our app is  useful for editing festival photos and banner makers for Vagh Baras, Dhanteras, Narak Chaturdashi, Govardhan Puja, Diwali, Hindu New Year, Bhai Dooj, Labh Pancham, Chhath Puja, Sardar Vallabh Bhai Patel, Tulsi Vivah, Dev Diwali, Guru Nanak Jayanti, and many more.
+   - Our app is  useful for editing festival photos and banner makers for Vagh Baras, Dhanteras, Narak Chaturdashi, Govardhan Puja, Diwali, Hindu New Year, Bhai Dooj, Labh Pancham, Chhath Puja, Sardar Vallabh Bhai Patel, Tulsi Vivah, Dev Diwali, Guru Nanak Jayanti, and many more.
   - Make an eye catchy banner maker with festival photos & text. No need to find a designer for making a festival poster with your brand icon or logo. Many people use our app for branding their businesses by making festival banners.
 
 
